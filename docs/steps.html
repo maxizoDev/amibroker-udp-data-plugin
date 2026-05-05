@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Key Steps – AmiBroker UDP Integration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h2>Workflow: Adapting DataPlugEX for UDP Real-Time Feeds</h2>
+<ol>
+    <li>Clone the ADK and copy <b>Examples/DataPlugEX/</b> as your plugin base.</li>
+    <li>Edit <b>dataplugex.cpp</b> and related files as documented in <a href="config.html">feature sections</a>.</li>
+    <li>Implement/patch:
+        <ul>
+            <li><a href="config.html">Settings UI & Dealer ID</a></li>
+            <li><a href="udpengine.html">UDP engine (background thread) & packet decode</a></li>
+            <li><a href="buffering.html">Thread-safe tick buffer</a></li>
+            <li><a href="logging.html">Critical event logging</a></li>
+            <li><a href="backfill.html">Placeholders for backfill</a></li>
+        </ul>
+    </li>
+    <li>Compile as <b>64-bit release</b> DLL.</li>
+    <li>Test in AmiBroker (plugin config dialog, live feed, backfill placeholder).</li>
+    <li>Package and ship (DLL, any license/readme/docs, release artifact ZIP).</li>
+</ol>
+
+<p><a href="index.html">⬅ Return to main index</a></p>
+</body>
+</html>
