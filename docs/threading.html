@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Threading – Feature Patch</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h2>Feature: Threading & Synchronization</h2>
+<p>Patches related to ensuring the background UDP worker does not race with AmiBroker polling (`GetQuotesEx`).</p>
+<details>
+<summary><b>tickbuffer.h/cpp</b> – All Add/Drain methods use std::mutex for thread safety.</summary>
+<pre><code>
+void TickBuffer::Add(const Tick&amp; t) {
+    std::lock_guard&lt;std::mutex&gt; lock(mtx);
+    // push_back/drop oldest/keep max capacity
+}
+void TickBuffer::Drain(std::vector&lt;Tick&gt;&amp; out, const std::string&amp; symbol, uint64_t afterTs) {
+    std::lock_guard&lt;std::mutex&gt; lock(mtx);
+    // filter/pull for symbol and remove, or clone as needed
+}
+</code></pre>
+</details>
+
+<p><a href="buildtest.html">Build, Test, Package, Release</a> | <a href="index.html">⬅ Index</a></p>
+</body>
+</html>
