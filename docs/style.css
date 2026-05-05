@@ -1,0 +1,101 @@
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #232e38;
+  background: #f4f6f9;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+.sidebar {
+  background: #1e3653;
+  color: #fff;
+  width: 240px;
+  min-height: 100vh;
+  padding: 28px 10px 10px 12px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 50;
+  border-right: 1px solid #154063;
+}
+.sidebar h2 {
+  color: #fff;
+  margin: 0 0 26px 10px;
+  font-size: 1.15rem;
+  letter-spacing: .6px;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sidebar li {
+  margin-bottom: 10px;
+}
+.sidebar a {
+  color: #e0e7ff;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 3px 0 3px 12px;
+  display: block;
+  border-radius: 4px;
+  transition: background 0.18s;
+}
+.sidebar a:hover, .sidebar .active {
+  background: #315a89;
+  color: #fff;
+}
+
+.main-content {
+  margin-left: 255px;
+  padding: 40px 32px 40px 32px;
+  max-width: 900px;
+  width: 100%;
+}
+
+/* Code styling & copy button */
+.code-block {
+  position: relative;
+  margin-top: 14px; margin-bottom: 28px;
+}
+.code-block pre, .code-block code {
+  background: #232841;
+  color: #e6eaef;
+  font-size: 1rem;
+  border-radius: 6px;
+  padding: 20px 16px 17px 16px;
+  overflow-x: auto;
+  font-family: Consolas, Menlo, "Fira Mono", "Liberation Mono", monospace;
+}
+.code-block button.copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: #264878;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 11px;
+  font-size: 0.92rem;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: background 0.18s, opacity 0.18s;
+}
+.code-block button.copy-btn:hover {
+  background: #508af7;
+  opacity: 1;
+}
+details, summary {
+  margin-top: 13px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+details > summary {
+  color: #173c77;
+  font-weight: 600;
+}
+
+@media (max-width: 700px) {
+  .sidebar { position: static; width: 100%; min-height: unset; border-right: none; }
+  .main-content { margin-left: 0; padding: 16px 5vw;}
+}
