@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Logging – Feature Patch</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h2>Feature: Logging (Critical Events Only)</h2>
+<p>Integrate <b>spdlog</b> or similar for per-day log file, only log startup, config, error events.</p>
+
+<details>
+<summary>New file or append to <b>logging.h/cpp</b></summary>
+<pre><code>
+#include &lt;spdlog/spdlog.h&gt;
+#include &lt;spdlog/sinks/daily_file_sink.h&gt;
+inline std::shared_ptr&lt;spdlog::logger&gt; get_logger() {
+    static auto logger = spdlog::daily_logger_mt("plug", "plugin_log.txt");
+    return logger;
+}
+</code></pre>
+</details>
+
+<details>
+<summary>Patches</summary>
+<ul>
+    <li>On UDP bind failure:<br />
+        <code>get_logger()-&gt;error("UDP bind error: {}", WSAGetLastError());</code>
+    </li>
+    <li>On configuration update:<br />
+        <code>get_logger()-&gt;info("Config updated: {} {}", pluginConfig.udpBindIp, pluginConfig.dealerId);</code>
+    </li>
+</ul>
+</details>
+
+<p><a href="backfill.html">Next: Backfill/Startup Loader</a> | <a href="index.html">⬅ Index</a></p>
+</body>
+</html>
