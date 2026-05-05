@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Backfill Placeholder – Feature Patch</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h2>Feature: Backfill Handler Structure</h2>
+<p>Integrate a stub for backfill requests if AmiBroker needs missing bars for current trading day.</p>
+
+<details>
+<summary><b>dataplugex.cpp</b> (search for "Backfill" or history handler)</summary>
+<ul>
+    <li>Function <b>GetBackfillQuotes()</b>:
+    <br/>
+    <code>
+// ADK provides function signature
+int GetBackfillQuotes(...parameters...) {
+    // TODO: call your backfill service or fill with placeholder candle bars
+    return 0;
+}
+    </code>
+    </li>
+</ul>
+</details>
+
+<p>Replace with real request code once your backfill server is operational.</p>
+<p><a href="threading.html">Next: Threading</a> | <a href="index.html">⬅ Index</a></p>
+</body>
+</html>
