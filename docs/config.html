@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Configuration Dialog & Dealer ID – Feature Patch</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h2>Feature: Config Dialog, Dealer ID, & UDP IP</h2>
+<p>Modifications for a modal config dialog allowing interface selection, dealer ID, and persistence.</p>
+
+<details>
+<summary><b>dataplugex.cpp</b> Changes</summary>
+<ul>
+  <li>
+    <b>Lines 70-120:</b> Replace the example config dialog code with dealer ID and UDP bind IP fields.
+    <br/><br/>
+    <pre><code>// Add fields to ConfigDlgProc
+case WM_INITDIALOG:
+    // ...
+    SetDlgItemTextA(hdlg, IDC_EDIT_UDPIP, pluginConfig.udpBindIp.c_str());
+    SetDlgItemTextA(hdlg, IDC_EDIT_DEALER, pluginConfig.dealerId.c_str());
+    break;
+case WM_COMMAND:
+    // ...
+    if (LOWORD(wParam) == IDOK) {
+        char buf[64];
+        GetDlgItemTextA(hdlg, IDC_EDIT_UDPIP, buf, sizeof(buf));
+        pluginConfig.udpBindIp = buf;
+        GetDlgItemTextA(hdlg, IDC_EDIT_DEALER, buf, sizeof(buf));
+        pluginConfig.dealerId = buf;
+        // Save config to file/registry as needed
+        EndDialog(hdlg, IDOK);
+    }
+    break;
+// Control IDs: #define IDC_EDIT_UDPIP 1201, #define IDC_EDIT_DEALER 1202
+    </code></pre>
+  </li>
+  <li>
+    <b>dataplugex.rc</b>: Add two EDIT controls for UDP IP and Dealer ID.
+    <br/><code>
+    EDITTEXT IDC_EDIT_UDPIP, 60, 24, 70, 14, ES_AUTOHSCROLL
+    EDITTEXT IDC_EDIT_DEALER, 60, 44, 70, 14, ES_AUTOHSCROLL
+    </code>
+  </li>
+</ul>
+</details>
+
+<details>
+<summary>File: <b>plugin_config.h/cpp</b> <i>if you want to move config load/save to a new file</i></summary>
+<pre><code>struct PluginConfig {
+    std::string udpBindIp;
+    std::string dealerId;
+    // ...other configurable fields
+};
+bool SavePluginConfig(const PluginConfig&);
+bool LoadPluginConfig(PluginConfig&);
+</code></pre>
+</details>
+
+<p><a href="index.html">⬅ Main index</a> | <a href="udpengine.html">Next: UDP Engine</a></p>
+</body>
+</html>
