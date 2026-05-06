@@ -8,7 +8,7 @@ Includes support for lossless multi-symbol delivery, on-the-fly config (dealer, 
 ## 🚀 Quickstart
 
 **Full developer docs:**  
-See [`docs/index.html`][https://raw.githubusercontent.com/maxizoDev/amibroker-udp-data-plugin/main/docs/index.html](https://maxizodev.github.io/amibroker-udp-data-plugin/)
+See [`docs/index.html`](https://raw.githubusercontent.com/maxizoDev/amibroker-udp-data-plugin/main/docs/index.html](https://maxizodev.github.io/amibroker-udp-data-plugin/)
 &xrarr; [Browse the HTML developer portal locally for step-by-step guides, patch instructions, and code snippets.](https://raw.githubusercontent.com/maxizoDev/amibroker-udp-data-plugin/main/docs/index.html)
 
 ---
