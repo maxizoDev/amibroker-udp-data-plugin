@@ -8,8 +8,8 @@ Includes support for lossless multi-symbol delivery, on-the-fly config (dealer, 
 ## 🚀 Quickstart
 
 **Full developer docs:**  
-See [`docs/index.html`](docs/index.html)  
-&xrarr; [Browse the HTML developer portal locally for step-by-step guides, patch instructions, and code snippets.](docs/index.html)
+See [`docs/index.html`](https://raw.githubusercontent.com/maxizoDev/amibroker-udp-data-plugin/main/docs/index.html)  
+&xrarr; [Browse the HTML developer portal locally for step-by-step guides, patch instructions, and code snippets.](https://raw.githubusercontent.com/maxizoDev/amibroker-udp-data-plugin/main/docs/index.html)
 
 ---
 
@@ -45,19 +45,19 @@ See [`docs/index.html`](docs/index.html)
 ## 🛠️ Build & Test
 
 1. **Clone and open in Visual Studio (64-bit, Release)**
-2. Install ADK headers/libs; add any required UDP/logging dependencies ([see docs](docs/buildtest.html)).
+2. Install ADK headers/libs; add any required UDP/logging dependencies ([see docs](https://raw.githubusercontent.com/maxizoDev/amibroker-udp-data-plugin/main/docs/buildtest.html)).
 3. Build DLL, copy to AmiBroker `Plugins` folder.
 4. Configure plugin in AmiBroker GUI.
 5. Start UDP feed source; confirm chart updates.
 6. Check rolling `plugin_log.txt` on error/config.
 
-Full details in [docs/buildtest.html](docs/buildtest.html).
+Full details in [docs/buildtest.html](https://raw.githubusercontent.com/maxizoDev/amibroker-udp-data-plugin/main/docs/buildtest.html).
 
 ---
 
 ## 🧭 Developer Portal
 
-- Documentation: all docs, code patches, and step-by-step [in HTML format](docs/index.html).
+- Documentation: all docs, code patches, and step-by-step [in HTML format](https://raw.githubusercontent.com/maxizoDev/amibroker-udp-data-plugin/main/docs/index.html).
 - Sidebar navigation, 1-click code copy for all required snippets.
 
 ---
@@ -66,7 +66,7 @@ Full details in [docs/buildtest.html](docs/buildtest.html).
 
 - Fork, create a feature branch, submit PR.
 - Open issues or feature requests in GitHub/Azure (pick whichever is enabled).
-- All new code must be covered in [the dev portal](docs/index.html) before merge.
+- All new code must be covered in [the dev portal](https://raw.githubusercontent.com/maxizoDev/amibroker-udp-data-plugin/main/docs/index.html) before merge.
 
 ---
 
@@ -78,7 +78,7 @@ Your license terms here (e.g., MIT, Apache-2.0, or as appropriate for your org).
 
 ### Questions?
 
-Open an issue or see [docs/index.html](docs/index.html) for troubleshooting and contacts.
+Open an issue or see [docs/index.html](https://raw.githubusercontent.com/maxizoDev/amibroker-udp-data-plugin/main/docs/index.html) for troubleshooting and contacts.
 
 ---
 
