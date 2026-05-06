@@ -3,40 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Key Steps – AmiBroker UDP Integration</title>
-    <link rel="stylesheet" href="https://raw.githubusercontent.com/maxizoDev/amibroker-udp-data-plugin/main/docs/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <aside class="sidebar">
     <h2>Developer Guide</h2>
     <ul>
-        <li><a href="https://raw.githubusercontent.com/maxizoDev/amibroker-udp-data-plugin/main/docs/index.html">🏠 Home</a></li>
-        <li><a href="https://raw.githubusercontent.com/maxizoDev/amibroker-udp-data-plugin/main/docs/steps.html" class="active">☑️ Step-by-Step</a></li>
+        <li><a href="index.html">🏠 Home</a></li>
+        <li><a href="steps.html" class="active">☑️ Step-by-Step</a></li>
         <li>
             <strong style="color: #e0e7ff; padding-left: 12px; display: block; margin-top: 12px;">Features</strong>
             <ul style="margin-top: 8px;">
-                <li><a href="https://raw.githubusercontent.com/maxizoDev/amibroker-udp-data-plugin/main/docs/config.html">⚙️ Config Dialog</a></li>
-                <li><a href="https://raw.githubusercontent.com/maxizoDev/amibroker-udp-data-plugin/main/docs/udpengine.html">🔌 UDP Engine</a></li>
-                <li><a href="https://raw.githubusercontent.com/maxizoDev/amibroker-udp-data-plugin/main/docs/buffering.html">📦 Tick Buffer</a></li>
-                <li><a href="https://raw.githubusercontent.com/maxizoDev/amibroker-udp-data-plugin/main/docs/logging.html">📝 Logging</a></li>
-                <li><a href="https://raw.githubusercontent.com/maxizoDev/amibroker-udp-data-plugin/main/docs/backfill.html">⏮️ Backfill</a></li>
-                <li><a href="https://raw.githubusercontent.com/maxizoDev/amibroker-udp-data-plugin/main/docs/threading.html">🧵 Threading</a></li>
+                <li><a href="config.html">⚙️ Config Dialog</a></li>
+                <li><a href="udpengine.html">🔌 UDP Engine</a></li>
+                <li><a href="buffering.html">📦 Tick Buffer</a></li>
+                <li><a href="logging.html">📝 Logging</a></li>
+                <li><a href="backfill.html">⏮️ Backfill</a></li>
+                <li><a href="threading.html">🧵 Threading</a></li>
             </ul>
         </li>
-        <li><a href="https://raw.githubusercontent.com/maxizoDev/amibroker-udp-data-plugin/main/docs/buildtest.html" style="margin-top: 12px;">🛠️ Build & Test</a></li>
+        <li><a href="buildtest.html" style="margin-top: 12px;">🛠️ Build & Test</a></li>
     </ul>
 </aside>
 <main class="main-content">
 <h2>Workflow: Adapting DataPlugEX for UDP Real-Time Feeds</h2>
 <ol>
     <li>Clone the ADK and copy <b>Examples/DataPlugEX/</b> as your plugin base.</li>
-    <li>Edit <b>dataplugex.cpp</b> and related files as documented in <a href="https://raw.githubusercontent.com/maxizoDev/amibroker-udp-data-plugin/main/docs/config.html">feature sections</a>.</li>
+    <li>Edit <b>dataplugex.cpp</b> and related files as documented in <a href="config.html">feature sections</a>.</li>
     <li>Implement/patch:
         <ul>
-            <li><a href="https://raw.githubusercontent.com/maxizoDev/amibroker-udp-data-plugin/main/docs/config.html">Settings UI & Dealer ID</a></li>
-            <li><a href="https://raw.githubusercontent.com/maxizoDev/amibroker-udp-data-plugin/main/docs/udpengine.html">UDP engine (background thread) & packet decode</a></li>
-            <li><a href="https://raw.githubusercontent.com/maxizoDev/amibroker-udp-data-plugin/main/docs/buffering.html">Thread-safe tick buffer</a></li>
-            <li><a href="https://raw.githubusercontent.com/maxizoDev/amibroker-udp-data-plugin/main/docs/logging.html">Critical event logging</a></li>
-            <li><a href="https://raw.githubusercontent.com/maxizoDev/amibroker-udp-data-plugin/main/docs/backfill.html">Placeholders for backfill</a></li>
+            <li><a href="config.html">Settings UI & Dealer ID</a></li>
+            <li><a href="udpengine.html">UDP engine (background thread) & packet decode</a></li>
+            <li><a href="buffering.html">Thread-safe tick buffer</a></li>
+            <li><a href="logging.html">Critical event logging</a></li>
+            <li><a href="backfill.html">Placeholders for backfill</a></li>
         </ul>
     </li>
     <li>Compile as <b>64-bit release</b> DLL.</li>
