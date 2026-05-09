@@ -1,32 +1,40 @@
-#include <vector>
-#include <mutex>
+#include "StdAfx.h"
+#include "TickBuffer.h"
 
-class TickBuffer {
-public:
-    TickBuffer(size_t maxSize) : maxSize(maxSize) {}
+TickBuffer::TickBuffer(size_t capacity)
+    : m_capacity(capacity)
+{
+}
 
-    void addTick(double price, long volume) {
-        std::lock_guard<std::mutex> lock(mutex);
-        if (ticks.size() >= maxSize) {
-            ticks.erase(ticks.begin()); // Remove the oldest tick
-        }
-        ticks.push_back({price, volume});
+void TickBuffer::Push(const Tick& tick)
+{
+    std::lock_guard<std::mutex> lk(m_mu);
+    if (m_q.size() >= m_capacity)
+    {
+        m_q.pop_front();
+        m_dropped.fetch_add(1, std::memory_order_relaxed);
     }
+    m_q.push_back(tick);
+}
 
-    std::vector<std::pair<double, long>> getTicks() {
-        std::lock_guard<std::mutex> lock(mutex);
-        return ticks;
+void TickBuffer::DrainInto(std::vector<Tick>& out)
+{
+    std::lock_guard<std::mutex> lk(m_mu);
+    out.reserve(out.size() + m_q.size());
+    while (!m_q.empty())
+    {
+        out.push_back(m_q.front());
+        m_q.pop_front();
     }
+}
 
-    void clear() {
-        std::lock_guard<std::mutex> lock(mutex);
-        ticks.clear();
-    }
+size_t TickBuffer::Size()
+{
+    std::lock_guard<std::mutex> lk(m_mu);
+    return m_q.size();
+}
 
-private:
-    size_t maxSize;
-    std::vector<std::pair<double, long>> ticks;
-    std::mutex mutex;
-};
-
-
+uint64_t TickBuffer::DroppedCount() const
+{
+    return m_dropped.load(std::memory_order_relaxed);
+}
