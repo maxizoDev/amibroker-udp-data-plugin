@@ -1,0 +1,51 @@
+// Resource script for the AmiBroker UDP data plug-in.
+// Designed to round-trip through the Visual Studio resource editor;
+// the layout values are intentionally simple so future edits in the
+// dialog editor don't conflict with text edits.
+
+#include "resource.h"
+#include <afxres.h>
+
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+
+/////////////////////////////////////////////////////////////////////////////
+// Configure dialog (shown by the plug-in's exported Configure() function)
+
+IDD_CONFIG_DIALOG DIALOGEX 0, 0, 320, 200
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "AmiBroker UDP Data Plug-in - Configuration"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "UDP bind IP:",          IDC_STATIC,           10,  10,  70,  10
+    EDITTEXT                                 IDC_BIND_IP_EDIT,     90,   8, 120,  12, ES_AUTOHSCROLL
+    LTEXT           "UDP port:",             IDC_STATIC,           10,  28,  70,  10
+    EDITTEXT                                 IDC_PORT_EDIT,        90,  26,  60,  12, ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Dealer/User ID:",       IDC_STATIC,           10,  46,  70,  10
+    EDITTEXT                                 IDC_DEALER_ID_EDIT,   90,  44, 120,  12, ES_AUTOHSCROLL
+    LTEXT           "Backfill URL:",         IDC_STATIC,           10,  64,  70,  10
+    EDITTEXT                                 IDC_BACKFILL_URL_EDIT,90,  62, 220,  12, ES_AUTOHSCROLL
+    LTEXT           "Refresh (sec):",        IDC_STATIC,           10,  82,  70,  10
+    EDITTEXT                                 IDC_REFRESH_INTERVAL_EDIT, 90, 80, 40, 12, ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Symbol limit:",         IDC_STATIC,           10, 100,  70,  10
+    EDITTEXT                                 IDC_SYMBOL_LIMIT_EDIT, 90, 98, 40, 12, ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Log level:",            IDC_STATIC,           10, 118,  70,  10
+    COMBOBOX                                 IDC_LOG_LEVEL_COMBO,  90, 116, 80,  60, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Auto-add unknown symbols", IDC_AUTOADD_CHECK,
+                    "Button", BS_AUTOCHECKBOX | WS_TABSTOP,        90, 134, 130, 10
+    LTEXT           "",                      IDC_STATUS_STATIC,    10, 156, 300, 10
+    DEFPUSHBUTTON   "OK",                    IDOK,                170, 174,  60, 14
+    PUSHBUTTON      "Cancel",                IDCANCEL,            240, 174,  60, 14
+END
+
+/////////////////////////////////////////////////////////////////////////////
+// Status-bar context menu (shown when user right-clicks the plug-in's
+// AmiBroker status pane). Mirrors the QT sample's IDR_STATUS_MENU.
+
+IDR_STATUS_MENU MENU
+BEGIN
+    POPUP "Plugin"
+    BEGIN
+        MENUITEM "Reconnect now",   ID_STATUS_RECONNECT
+        MENUITEM "Shut down feed",  ID_STATUS_SHUTDOWN
+    END
+END
