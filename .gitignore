@@ -47,3 +47,6 @@ Thumbs.db
 
 # Dependencies
 /vcpkg_installed/
+
+# ADK reference clone (read-only mirror of https://gitlab.com/amibroker/adk.git)
+/.adk-reference/
