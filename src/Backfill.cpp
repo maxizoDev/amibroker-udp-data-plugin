@@ -91,7 +91,7 @@ void Backfill::ProcessJob(const Job& job)
     {
         m_symbolTable.ReplaceBars(job.ticker.c_str(), job.periodSec, bars);
         UDP_LOG_INFO("Backfill OK: %s @ %ds (%d bars)",
-                     job.ticker.c_str(), job.periodSec, bars.GetSize());
+                     job.ticker.c_str(), job.periodSec, (int)bars.size());
     }
     else
     {

@@ -72,7 +72,7 @@ namespace
 
     constexpr UINT_PTR kStreamingTimerId = 0xA17B;
 
-    using CQuoteArrayLocal = CArray<struct Quotation, struct Quotation>;
+    using CQuoteArrayLocal = CQuoteArray;
 }
 
 // ---------------------------------------------------------------------
@@ -110,10 +110,10 @@ static VOID CALLBACK OnTimerProc(HWND, UINT, UINT_PTR idEvent, DWORD)
 static int BlendQuoteArrays(struct Quotation* pQuotes, int /*nPeriodicity*/,
                             int nLastValid, int nSize, CQuoteArrayLocal* pCurQuotes)
 {
-    int iQty = pCurQuotes->GetSize();
+    int iQty = static_cast<int>(pCurQuotes->size());
     DATE_TIME_INT nFirstDate = (iQty == 0)
         ? static_cast<DATE_TIME_INT>(-1)
-        : pCurQuotes->GetAt(0).DateTime.Date;
+        : (*pCurQuotes)[0].DateTime.Date;
 
     int iStart = nLastValid;
     for (; iStart >= 0; --iStart)
@@ -140,7 +140,7 @@ static int BlendQuoteArrays(struct Quotation* pQuotes, int /*nPeriodicity*/,
     int iNumQuotes = (std::min)(nSize - iStart, iQty - iSrc);
     if (iNumQuotes > 0)
     {
-        memcpy(pQuotes + iStart, pCurQuotes->GetData() + iSrc,
+        memcpy(pQuotes + iStart, pCurQuotes->data() + iSrc,
                iNumQuotes * sizeof(Quotation));
     }
     else
@@ -347,7 +347,7 @@ PLUGINAPI int GetQuotesEx(LPCTSTR pszTicker, int nPeriodicity, int nLastValid,
     bool have = g_symbolTable.GetBars(static_cast<LPCSTR>(pszTicker),
                                       nPeriodicity, cur);
 
-    if (!have || cur.GetSize() == 0)
+    if (!have || cur.empty())
     {
         // Trigger an async backfill so future calls have data; meanwhile
         // return whatever AmiBroker already had.

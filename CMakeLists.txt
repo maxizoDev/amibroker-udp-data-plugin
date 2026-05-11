@@ -44,7 +44,6 @@ target_compile_definitions(AmibrokerUDPData PRIVATE
     _CRT_SECURE_NO_WARNINGS
     WINVER=0x0601
     _WIN32_WINNT=0x0601
-    UNICODE=0           # AmiBroker plug-in API is ANSI/MBCS
     _MBCS
 )
 
@@ -52,6 +51,8 @@ target_compile_options(AmibrokerUDPData PRIVATE
     /W4
     /permissive-
     /Zc:forScope-       # matches QT sample's flag
+    /UUNICODE           # undefine UNICODE so LPCTSTR stays char* (ANSI/MBCS build)
+    /U_UNICODE
 )
 
 target_link_libraries(AmibrokerUDPData PRIVATE

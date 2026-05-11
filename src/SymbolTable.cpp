@@ -124,11 +124,11 @@ void SymbolTable::FoldIntoBar(Entry& e, const Tick& t)
     {
         DATE_TIME_INT barKey = TruncateToPeriodicity(t.dateTime, pp.nPeriodSec);
 
-        const int sz = pp.bars.GetSize();
+        const int sz = static_cast<int>(pp.bars.size());
         Quotation* qt = nullptr;
-        if (sz > 0 && pp.bars.GetData()[sz - 1].DateTime.Date == barKey)
+        if (sz > 0 && pp.bars.back().DateTime.Date == barKey)
         {
-            qt = &pp.bars.GetData()[sz - 1];
+            qt = &pp.bars.back();
         }
 
         const float price = NOT_EMPTY(t.fLast) ? t.fLast :
@@ -143,7 +143,7 @@ void SymbolTable::FoldIntoBar(Entry& e, const Tick& t)
             bar.Volume = NOT_EMPTY(t.fTradeVol) ? t.fTradeVol : 0.f;
             bar.OpenInterest = 0.f;
             bar.AuxData1 = bar.AuxData2 = 0.f;
-            pp.bars.Add(bar);
+            pp.bars.push_back(bar);
         }
         else
         {
@@ -239,7 +239,7 @@ bool SymbolTable::GetBars(const char* pszTicker, int nPeriodSec, CQuoteArray& pO
     if (!e) return false;
     PerPeriodicity* pp = GetPP(*e, nPeriodSec);
     if (!pp) return false;
-    pOut.Copy(pp->bars);
+    pOut = pp->bars;
     return true;
 }
 
@@ -250,7 +250,7 @@ void SymbolTable::ReplaceBars(const char* pszTicker, int nPeriodSec, const CQuot
     if (!e) return;
     PerPeriodicity* pp = GetPP(*e, nPeriodSec);
     if (!pp) return;
-    pp->bars.Copy(src);
+    pp->bars = src;
 }
 
 int SymbolTable::Count()

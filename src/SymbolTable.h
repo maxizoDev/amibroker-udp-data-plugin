@@ -26,7 +26,7 @@
 #include "../include/Plugin.h"   // Quotation, RecentInfo, AmiDate
 #include "TickBuffer.h"
 
-using CQuoteArray = CArray<struct Quotation, struct Quotation>;
+using CQuoteArray = std::vector<struct Quotation>;
 
 class SymbolTable
 {
