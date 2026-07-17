@@ -104,6 +104,9 @@ roll a custom subset. The required `WM_USER_STREAMING_UPDATE` value is
 
 ## Operating notes for future Claude sessions
 
+- **Branch policy:** All development goes on branch `claudeDev`. Do **not**
+  push to `main`, `dev`, `claude/project-overview-qXHAF`, or any other branch.
+  This rule is locked; enforce it on every commit and push.
 - The ADK clone at `.adk-reference/` is gitignored; never commit it. If it's
   missing, re-clone with `git clone --depth=1 https://gitlab.com/amibroker/adk.git .adk-reference`.
 - When in doubt about an interface or struct field, **read `.adk-reference/`
